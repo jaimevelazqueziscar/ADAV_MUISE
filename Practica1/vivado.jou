@@ -1,0 +1,49 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Mar 31 17:04:39 2021
+# Process ID: 2896
+# Current directory: C:/Users/jaymy/ADAV_MUISE/Practica1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10036 C:\Users\jaymy\ADAV_MUISE\Practica1\Practica1.xpr
+# Log file: C:/Users/jaymy/ADAV_MUISE/Practica1/vivado.log
+# Journal file: C:/Users/jaymy/ADAV_MUISE/Practica1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.xpr
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+add_files -norecurse {C:/Users/jaymy/Downloads/PROYECTO_DSED_ManuelSimal_JaimeVelazquez/mux5.vhd C:/Users/jaymy/Downloads/PROYECTO_DSED_ManuelSimal_JaimeVelazquez/mux2.vhd}
+update_compile_order -fileset sources_1
+remove_files  C:/Users/jaymy/Downloads/PROYECTO_DSED_ManuelSimal_JaimeVelazquez/mux5.vhd
+close [ open C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux4.vhd w ]
+add_files C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux4.vhd
+close [ open C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux3.vhd w ]
+add_files C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux3.vhd
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+close [ open C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux11.vhd w ]
+add_files C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux11.vhd
+update_compile_order -fileset sources_1
+remove_files  C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux11.vhd
+remove_files  C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux3.vhd
+file delete -force C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux3.vhd
+close [ open C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux3.vhd w ]
+add_files C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux3.vhd
+update_compile_order -fileset sources_1
+close [ open C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux6.vhd w ]
+add_files C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux6.vhd
+update_compile_order -fileset sources_1
+remove_files  C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux4.vhd
+file delete -force C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux4.vhd
+close [ open C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux9.vhd w ]
+add_files C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/mux9.vhd
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+close [ open C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/FF.vhd w ]
+add_files C:/Users/jaymy/ADAV_MUISE/Practica1/Practica1.srcs/sources_1/new/FF.vhd
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
