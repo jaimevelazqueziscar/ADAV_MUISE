@@ -8,6 +8,8 @@ ENTITY top IS
      reset, clk      : in std_logic;
      validacion      : in std_logic;
      data_in         : in std_logic_vector(23 downto 0); 
+     ack_in          : out std_logic;
+     ack_out         : in std_logic;
      data_out        : out std_logic_vector(23 downto 0);  
      valid_out       : out std_logic );
 END top;
@@ -38,7 +40,7 @@ END component;
 
 COMPONENT control IS 
   PORT (
-     reset, clk    : in std_logic;
+  reset, clk    : in std_logic;
   validacion    : in std_logic;
   flags         : in  std_logic_vector(7 downto 0);
   control_mux1  : out std_logic;
@@ -59,17 +61,19 @@ END component;
 
 COMPONENT interfaz_entrada IS 
   PORT (
-     reset, clk      : in std_logic;
+     reset           : in std_logic;
      validacion      : in std_logic;
      data_in         : in std_logic_vector(23 downto 0); 
+     ack_in          : out std_logic;
      entradas        : out std_logic_vector(23 downto 0) ); 
 END component;
 
 COMPONENT interfaz_salida IS 
   PORT (
-     reset, clk      : in std_logic;
+     reset           : in std_logic;
      fin             : in std_logic;
      salidas         : in std_logic_vector(23 downto 0);  
+     ack_out         : in std_logic;
      data_out        : out std_logic_vector(23 downto 0);  
      valid_out       : out std_logic );
 END component;
@@ -132,12 +136,20 @@ U2 : control
      fin => fin );
 
 U3 : interfaz_entrada  
-     PORT MAP (reset => reset, clk => clk, 
-     validacion => validacion, data_in => data_in, entradas => entradas );
+     PORT MAP (
+     reset => reset, 
+     validacion => validacion, 
+     ack_in => ack_in,
+     data_in => data_in, 
+     entradas => entradas );
 
 U4 : interfaz_salida  
-     PORT MAP (reset => reset, clk => clk, 
-     fin => fin, salidas => salidas, data_out => data_out, valid_out => valid_out );
+     PORT MAP (reset => reset, 
+     fin => fin, 
+     salidas => salidas, 
+     ack_out => ack_out,
+     data_out => data_out, 
+     valid_out => valid_out );
 
 	 
 END behavior;

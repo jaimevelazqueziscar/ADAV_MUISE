@@ -90,13 +90,10 @@ BEGIN
                 sv4 <= (others => '0');    -- (…)
            ELSIF (clk'event AND clk='1') THEN
              salidas_reg <= salidas_next;
-           
-		     IF comandos(0)='1' THEN -- ENABLE la manda la unidad de control
-                sv1 <= sv1_comb;   
-                sv2 <= sv2_comb; 
-				sv3 <= sv3_comb;   
-				sv4 <= sv4_comb;
-             END IF; 
+             sv1 <= sv1_comb;   
+             sv2 <= sv2_comb; 
+             sv3 <= sv3_comb;   
+             sv4 <= sv4_comb;
            END IF; 
       END PROCESS;
 	  

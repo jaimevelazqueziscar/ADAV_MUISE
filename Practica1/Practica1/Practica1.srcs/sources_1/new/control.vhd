@@ -26,12 +26,12 @@ END control;
 
 ARCHITECTURE behavioral OF control IS
     
-    type state_type is (t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
+    type state_type is (idle, t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
     signal state_reg, state_next : state_type;
     
     signal control_mux1_reg, control_mux3_reg, control_mux1_next, control_mux3_next, control_mux_r1_reg, control_mux_r1_next, control_mux_r3_reg,
     control_mux_r3_next, control_mux_r4_reg, control_mux_r4_next, flag_sv1_reg, flag_sv1_next, flag_sv2_reg, flag_sv2_next, flag_sv3_reg, flag_sv3_next,
-    flag_sv4_reg, flag_sv4_next : std_logic;
+    flag_sv4_reg, flag_sv4_next, fin_next, fin_reg : std_logic;
 
     signal control_mux2_reg, control_mux2_next : std_logic_vector(3 downto 0);
     signal control_mux4_reg, control_mux4_next : std_logic_vector(2 downto 0);
@@ -43,7 +43,7 @@ process(clk)
 begin
 
     if (reset = '0') then
-        state_reg <= t0;
+        state_reg <= idle;
         control_mux1_reg <= '0';
         control_mux2_reg <= "0000";
         control_mux3_reg <= '0';
@@ -56,6 +56,7 @@ begin
         flag_sv2_reg <= '0';
         flag_sv3_reg <= '0';
         flag_sv4_reg <= '0';
+        fin_reg <= '0';
 
     elsif(clk'event and clk='1') then
         state_reg <= state_next;
@@ -71,6 +72,7 @@ begin
         flag_sv2_reg <= flag_sv2_next;
         flag_sv3_reg <= flag_sv3_next;
         flag_sv4_reg <= flag_sv4_next;
+        fin_reg <= fin_next;
     end if;
 end process;
 
@@ -91,103 +93,117 @@ begin
     flag_sv2_next <= flag_sv2_reg;
     flag_sv3_next <= flag_sv3_reg;
     flag_sv4_next <= flag_sv4_reg;
+    fin_next <= fin_reg;
 
 
 case state_reg is
+
+    when idle =>
+    control_mux1_next <= '0';
+            control_mux2_next <= "0000";
+            control_mux3_next <= '0';
+            control_mux4_next <= "000";
+            control_mux_r1_next <= '0';
+            control_mux_r2_next <= "00";
+            control_mux_r3_next <= '1';
+            control_mux_r4_next <= '0';  
+            flag_sv1_next <= '0';
+            flag_sv2_next <= '0';
+            flag_sv3_next <= '0';
+            flag_sv4_next <= '0';
+        state_next <= t0;
 
     when t0 =>
         control_mux1_next <= '0';
         control_mux2_next <= "0000";
         control_mux3_next <= '0';
         control_mux4_next <= "000";
-        control_mux_r1_next <= '0';
+        control_mux_r1_next <= '1';
         control_mux_r2_next <= "00";
         control_mux_r3_next <= '1';
-        control_mux_r4_next <= '0';  
+        control_mux_r4_next <= '1';  
         flag_sv1_next <= '0';
         flag_sv2_next <= '0';
         flag_sv3_next <= '0';
-        flag_sv4_next <= '0';
-        
-        if (validacion = '1') then
-            state_next <= t1;
-        else
-            state_next <= t0;
-        end if;
-        
+        flag_sv4_next <= '0'; 
+        fin_next <= '0';
+        state_next <= t1;       
        
    when t1 =>
         control_mux2_next <= "0001";     
-        control_mux4_next <= "001";
+        control_mux4_next <= "000";
         control_mux_r1_next <= '1';
+        control_mux_r3_next <= '0';
         control_mux_r4_next <= '1';
         state_next <= t2;
         
    when t2 =>
         control_mux1_next <= '1';
         control_mux2_next <= "0010";     
-        control_mux3_next <= '1';
-        control_mux4_next <= "010";
-        control_mux_r3_next <= '0';
+        control_mux3_next <= '0';
+        control_mux4_next <= "001";
+        control_mux_r2_next <= "01";
+        control_mux_r3_next <= '1';
         state_next <= t3;
         
    when t3 =>
         control_mux1_next <= '0';
         control_mux2_next <= "0011";
-        control_mux3_next <= '0';
-        control_mux4_next <= "011";
-        control_mux_r2_next <= "01";
-        control_mux_r3_next <= '1';
+        control_mux3_next <= '1';
+        control_mux4_next <= "010";
         state_next <= t4;
         
     when t4 =>
         control_mux1_next <= '1';
         control_mux2_next <= "0100";
-        control_mux3_next <= '1';
-        control_mux4_next <= "010";
+        control_mux3_next <= '0';
+        control_mux4_next <= "011";
         flag_sv1_next <= '1';
         state_next <= t5;    
         
     when t5 =>
         control_mux1_next <= '0';
         control_mux2_next <= "0101";
-        control_mux3_next <= '0';
-        control_mux4_next <= "100";
+        control_mux3_next <= '1';
+        control_mux4_next <= "010";
         flag_sv1_next <= '0';
         state_next <= t6;
         
     when t6 =>
         control_mux1_next <= '1';
         control_mux2_next <= "0110";
-        control_mux3_next <= '1';
-        control_mux4_next <= "010";
+        control_mux3_next <= '0';
+        control_mux4_next <= "100";
         flag_sv2_next <= '1';
         state_next <= t7;
         
     when t7 =>
         control_mux1_next <= '0';
         control_mux2_next <= "0111";
+        control_mux3_next <= '1';
+        control_mux4_next <= "010";
         flag_sv2_next <= '0';
         state_next <= t8;
         
     when t8 =>
         control_mux1_next <= '1';
         control_mux2_next <= "1000";
-        control_mux3_next <= '0';
-        control_mux4_next <= "101";
+        control_mux_r1_next <= '0';
+        control_mux_r2_next <= "10";
         flag_sv3_next <= '1';
         state_next <= t9;
         
     when t9 =>
-        control_mux_r1_next <= '0';
-        control_mux_r2_next <= "10";
         flag_sv3_next <= '0';
+        control_mux3_next <= '0';
+        control_mux4_next <= "101";
+        control_mux_r2_next <= "01";
         state_next <= t10;
         
     when t10 =>
-        control_mux_r2_next <= "01";
         flag_sv4_next <= '1';
-        state_next <= t0;
+        fin_next <= '1';
+        state_next <= idle;
 
                    
  end case;
@@ -205,6 +221,7 @@ flag_sv1 <= flag_sv1_next;
 flag_sv2 <= flag_sv2_next;
 flag_sv3 <= flag_sv3_next;
 flag_sv4 <= flag_sv4_next;
+fin <= fin_next;
 
 
 end behavioral;

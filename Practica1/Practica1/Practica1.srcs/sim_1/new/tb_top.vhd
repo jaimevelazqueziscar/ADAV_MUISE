@@ -18,20 +18,22 @@ ARCHITECTURE behavior OF tb_top IS
 COMPONENT top IS 
   PORT (
      reset, clk      : in std_logic;
-     validacion      : in std_logic;
-     data_in         : in std_logic_vector(23 downto 0); 
-     data_out        : out std_logic_vector(23 downto 0);  
-     valid_out       : out std_logic );
+       validacion      : in std_logic;
+       data_in         : in std_logic_vector(23 downto 0); 
+       ack_in          : out std_logic;
+       ack_out         : in std_logic;
+       data_out        : out std_logic_vector(23 downto 0);  
+       valid_out       : out std_logic );
 END component;
 
   SIGNAL reset, clk : std_logic;
   SIGNAL data_in, data_out : std_logic_vector(23 downto 0);
   SIGNAL validacion : std_logic;
-  SIGNAL valid_out, ack_out : std_logic;
+  SIGNAL valid_out, ack_out, ack_in : std_logic;
 
   CONSTANT period : time := 10 ns;
 
-  FILE f_out : TEXT IS OUT "C:\Users\loret\Documents\Master_Electronica\segundo_cuatri\ADAV\Parte1\ADA\f_out.txt";    -- ES PREFERIBLE PONER LA DIRECCCION COMPLETA!!
+  FILE f_out : TEXT IS OUT "C:\Users\jaymy\ADAV_MUISE\f_out.txt";    -- ES PREFERIBLE PONER LA DIRECCCION COMPLETA!!
   
 BEGIN  
       -- RESET
@@ -43,8 +45,15 @@ BEGIN
 
       -- UNIT UNDER TEST
       UUT : top 
-      PORT MAP (reset => reset, clk => clk, 
-      validacion => validacion, data_in => data_in, data_out => data_out, valid_out => valid_out );
+      PORT MAP (
+      reset => reset, 
+      clk => clk, 
+      validacion => validacion, 
+      data_in => data_in,
+      ack_in => ack_in,
+      ack_out => ack_out, 
+      data_out => data_out, 
+      valid_out => valid_out );
 	 
 	 
 	  -- CLK
@@ -62,14 +71,23 @@ BEGIN
 		   wait for 100*period;
 	 
 	       data_in <= "00000001" & "00000000" & "00000000";     validacion <= '1';
-		   wait for period;
+		   wait for 10*period;
+		   if ack_in = '1' then
+		      data_in <= (others => '0');
+              validacion <= '0';
+           
+              wait for 520*period;
+              ack_out <= '1';
+              
+              wait for 10*period;
+              ack_out <= '1';
+              wait for 2*period;
+              if valid_out = '0' then
+                  ack_out <= '0';
+              end if;
 
-	       data_in <= (others => '0');   validacion <= '1';
-		   wait for 50*period;
-
-	       data_in <= (others => '0');   validacion <= '0';
-		   wait for 50*period;
-		   wait;
+           end if;
+           wait;
       END PROCESS;
 	 
 

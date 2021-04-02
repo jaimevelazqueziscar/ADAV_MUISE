@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="719000001fs"></ZoomEndTime>
+      <Cursor1Time time="0fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="141"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="20" />
+   <wvobject fp_name="/tb_top/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[23:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/data_out" type="array">
+      <obj_property name="ElementShortName">data_out[23:0]</obj_property>
+      <obj_property name="ObjectShortName">data_out[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/validacion" type="logic">
+      <obj_property name="ElementShortName">validacion</obj_property>
+      <obj_property name="ObjectShortName">validacion</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/valid_out" type="logic">
+      <obj_property name="ElementShortName">valid_out</obj_property>
+      <obj_property name="ObjectShortName">valid_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/ack_out" type="logic">
+      <obj_property name="ElementShortName">ack_out</obj_property>
+      <obj_property name="ObjectShortName">ack_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/ack_in" type="logic">
+      <obj_property name="ElementShortName">ack_in</obj_property>
+      <obj_property name="ObjectShortName">ack_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/period" type="other">
+      <obj_property name="ElementShortName">period</obj_property>
+      <obj_property name="ObjectShortName">period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U3/entradas" type="array">
+      <obj_property name="ElementShortName">entradas[23:0]</obj_property>
+      <obj_property name="ObjectShortName">entradas[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U2/state_reg" type="other">
+      <obj_property name="ElementShortName">state_reg</obj_property>
+      <obj_property name="ObjectShortName">state_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/s_r_1" type="array">
+      <obj_property name="ElementShortName">s_r_1[23:0]</obj_property>
+      <obj_property name="ObjectShortName">s_r_1[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/s_r_2" type="array">
+      <obj_property name="ElementShortName">s_r_2[23:0]</obj_property>
+      <obj_property name="ObjectShortName">s_r_2[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/s_r_3" type="array">
+      <obj_property name="ElementShortName">s_r_3[23:0]</obj_property>
+      <obj_property name="ObjectShortName">s_r_3[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/s_r_4" type="array">
+      <obj_property name="ElementShortName">s_r_4[23:0]</obj_property>
+      <obj_property name="ObjectShortName">s_r_4[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/mult_out" type="array">
+      <obj_property name="ElementShortName">mult_out[23:0]</obj_property>
+      <obj_property name="ObjectShortName">mult_out[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/sum_out" type="array">
+      <obj_property name="ElementShortName">sum_out[23:0]</obj_property>
+      <obj_property name="ObjectShortName">sum_out[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/salidas" type="array">
+      <obj_property name="ElementShortName">salidas[23:0]</obj_property>
+      <obj_property name="ObjectShortName">salidas[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/salidas_reg" type="array">
+      <obj_property name="ElementShortName">salidas_reg[23:0]</obj_property>
+      <obj_property name="ObjectShortName">salidas_reg[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top/UUT/U1/salidas_next" type="array">
+      <obj_property name="ElementShortName">salidas_next[23:0]</obj_property>
+      <obj_property name="ObjectShortName">salidas_next[23:0]</obj_property>
+   </wvobject>
+</wave_config>
