@@ -32,28 +32,19 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity mux11 is
-Port (  a, b, c, d, e, f, g, h, i, j, k : in std_logic_vector(23 downto 0); 
-        s : in std_logic_vector(3 downto 0);
-        m11_out : out std_logic_vector(23 downto 0) 
+entity mux2 is
+Port (  a, b : in std_logic_vector(23 downto 0); 
+        s : in std_logic;
+        m2_out : out std_logic_vector(23 downto 0) 
       ); 
-end mux11;
+end mux2;
 
-architecture Behavioral of mux11 is
+architecture Behavioral of mux2 is
 
 begin
 
-m11_out <=   a when (s = "0000") else
-            b when (s = "0001") else
-            c when (s = "0010") else
-            d when (s = "0011") else
-            e when (s = "0100") else
-            f when (s = "0101") else
-            g when (s = "0110") else
-            h when (s = "0111") else
-            i when (s = "1000") else
-            j when (s = "1001") else
-            f;
+m2_out <=   a when (s = '0') else
+            b;
 
 
 end Behavioral;

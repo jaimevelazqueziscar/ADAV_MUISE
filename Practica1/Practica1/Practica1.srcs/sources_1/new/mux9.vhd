@@ -34,7 +34,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity mux9 is
 Port (  a, b, c, d, e, f, g, h, i : in std_logic_vector(23 downto 0); 
-        s : in std_logic_vector(1 downto 0);
+        s : in std_logic_vector(3 downto 0);
         m9_out : out std_logic_vector(23 downto 0) 
       ); 
 end mux9;
