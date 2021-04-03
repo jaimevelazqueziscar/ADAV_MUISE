@@ -11,7 +11,8 @@ ENTITY top IS
      ack_in          : out std_logic;
      ack_out         : in std_logic;
      data_out        : out std_logic_vector(23 downto 0);  
-     valid_out       : out std_logic );
+     valid_out       : out std_logic;
+     fin             : out std_logic );
 END top;
 
 
@@ -75,13 +76,14 @@ COMPONENT interfaz_salida IS
      salidas         : in std_logic_vector(23 downto 0);  
      ack_out         : in std_logic;
      data_out        : out std_logic_vector(23 downto 0);  
-     valid_out       : out std_logic );
+     valid_out       : out std_logic;
+     fin_out         : out std_logic );
 END component;
 
 
   SIGNAL entradas, salidas : std_logic_vector(23 downto 0);
   SIGNAL comandos, flags : std_logic_vector(7 downto 0);
-  SIGNAL fin : std_logic;
+  SIGNAL fin_aux : std_logic;
 
     signal control_mux1_aux, control_mux3_aux, control_mux_r1_aux, control_mux_r3_aux, control_mux_r4_aux, flag_sv1_aux, flag_sv2_aux, flag_sv3_aux, flag_sv4_aux : std_logic;
 
@@ -133,7 +135,7 @@ U2 : control
      flag_sv3 => flag_sv3_aux,    
      flag_sv4 => flag_sv4_aux,  
      flags => flags, 
-     fin => fin );
+     fin => fin_aux );
 
 U3 : interfaz_entrada  
      PORT MAP (
@@ -145,11 +147,12 @@ U3 : interfaz_entrada
 
 U4 : interfaz_salida  
      PORT MAP (reset => reset, 
-     fin => fin, 
+     fin => fin_aux, 
      salidas => salidas, 
      ack_out => ack_out,
      data_out => data_out, 
-     valid_out => valid_out );
+     valid_out => valid_out,
+     fin_out => fin );
 
 	 
 END behavior;

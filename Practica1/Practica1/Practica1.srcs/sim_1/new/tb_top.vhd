@@ -23,17 +23,18 @@ COMPONENT top IS
        ack_in          : out std_logic;
        ack_out         : in std_logic;
        data_out        : out std_logic_vector(23 downto 0);  
-       valid_out       : out std_logic );
+       valid_out       : out std_logic;
+       fin             : out std_logic );
 END component;
 
   SIGNAL reset, clk : std_logic;
   SIGNAL data_in, data_out : std_logic_vector(23 downto 0);
-  SIGNAL validacion : std_logic;
+  SIGNAL validacion, fin : std_logic;
   SIGNAL valid_out, ack_out, ack_in : std_logic;
-
+  
   CONSTANT period : time := 10 ns;
 
-  FILE f_out : TEXT IS OUT "C:\Users\jaymy\ADAV_MUISE\f_out.txt";    -- ES PREFERIBLE PONER LA DIRECCCION COMPLETA!!
+  FILE f_out : TEXT IS OUT "C:\Users\jaymy\ADAV_MUISE\f_out1.txt";    -- ES PREFERIBLE PONER LA DIRECCCION COMPLETA!!
   
 BEGIN  
       -- RESET
@@ -53,7 +54,8 @@ BEGIN
       ack_in => ack_in,
       ack_out => ack_out, 
       data_out => data_out, 
-      valid_out => valid_out );
+      valid_out => valid_out,
+      fin => fin );
 	 
 	 
 	  -- CLK
@@ -75,34 +77,24 @@ BEGIN
 		   if ack_in = '1' then
 		      data_in <= (others => '0');
               validacion <= '0';
-           
-              wait for 520*period;
-              ack_out <= '1';
-              
-              wait for 10*period;
-              ack_out <= '1';
-              wait for 2*period;
-              if valid_out = '0' then
-                  ack_out <= '0';
-              end if;
-
            end if;
            wait;
       END PROCESS;
 	 
 
 	  -- OUTPUT DATA
-      Proc_save_data : PROCESS (clk)
+      Proc_save_data : PROCESS (fin, valid_out)
 	    variable v_data_out : bit_vector(23 downto 0);
 	    variable v_linea : line;
 	  BEGIN
-   	       if (clk'event and clk='1') then
-               --ack_out <= '0' after 1 ns;
-               if (valid_out = '1') then
-                    --ack_out <= '1' after 2 ns;
-					v_data_out := To_BitVector(data_out);
-		            WRITE(v_linea, v_data_out);
-			        WRITELINE(f_out, v_linea);
+   	       if (valid_out'event and valid_out='1') then
+                ack_out <= '1' after 20 ns;
+                v_data_out := To_BitVector(data_out);
+                WRITE(v_linea, v_data_out);
+                WRITELINE(f_out, v_linea);
+		   elsif (valid_out'event and valid_out='0') then
+		      if valid_out = '0' then
+			        ack_out <= '0' after 2 ns;
 		       end if;
 		   end if;
       END PROCESS;

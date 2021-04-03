@@ -39,7 +39,7 @@ ARCHITECTURE behavioral OF control IS
 
 begin  
 
-process(clk)
+process(clk, reset)
 begin
 
     if (reset = '0') then
@@ -77,7 +77,7 @@ begin
 end process;
 
 
-process(state_reg, validacion)
+process(state_reg, validacion, control_mux1_reg, control_mux2_reg, control_mux3_reg, control_mux4_reg, control_mux_r1_reg, control_mux_r2_reg, control_mux_r3_reg, control_mux_r4_reg, flag_sv1_reg, flag_sv2_reg, flag_sv3_reg, flag_sv4_reg, fin_reg)
 
 begin
 
@@ -99,18 +99,18 @@ begin
 case state_reg is
 
     when idle =>
-    control_mux1_next <= '0';
-            control_mux2_next <= "0000";
-            control_mux3_next <= '0';
-            control_mux4_next <= "000";
-            control_mux_r1_next <= '0';
-            control_mux_r2_next <= "00";
-            control_mux_r3_next <= '1';
-            control_mux_r4_next <= '0';  
-            flag_sv1_next <= '0';
-            flag_sv2_next <= '0';
-            flag_sv3_next <= '0';
-            flag_sv4_next <= '0';
+        control_mux1_next <= '0';
+        control_mux2_next <= "0000";
+        control_mux3_next <= '0';
+        control_mux4_next <= "000";
+        control_mux_r1_next <= '0';
+        control_mux_r2_next <= "00";
+        control_mux_r3_next <= '1';
+        control_mux_r4_next <= '0';  
+        flag_sv1_next <= '0';
+        flag_sv2_next <= '0';
+        flag_sv3_next <= '0';
+        flag_sv4_next <= '0';
         state_next <= t0;
 
     when t0 =>
