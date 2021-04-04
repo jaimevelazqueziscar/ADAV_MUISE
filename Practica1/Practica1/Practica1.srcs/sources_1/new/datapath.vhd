@@ -79,6 +79,14 @@ component FF port (
       );
 end component;	
 
+component RippleCarry_23to0 port (
+        a : in STD_LOGIC_VECTOR (23 downto 0);
+        b : in STD_LOGIC_VECTOR (23 downto 0);
+        s : out STD_LOGIC_VECTOR (23 downto 0)
+
+);
+end component;
+
 BEGIN 
 	  -- generacion de registros
       Proc_seq : PROCESS (reset, clk)
@@ -142,8 +150,14 @@ M4 : mux6 port map (
         s => control_mux4,
         m6_out => m4_out
     );
+ 
+FA : RippleCarry_23to0 port map (
+        a => m3_out,
+        b => m4_out,
+        s => sum_out
+    );
     
-sum_out <= m3_out + m4_out;
+--sum_out <= m3_out + m4_out;
 
 MR1 : mux2 port map (
         a => s_r_1,
