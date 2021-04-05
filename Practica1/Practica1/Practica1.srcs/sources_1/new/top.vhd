@@ -28,7 +28,7 @@ COMPONENT datapath IS
   control_mux3  : in std_logic;
   control_mux4  : in std_logic_vector(2 downto 0);
   control_mux_r1 : in std_logic;
-  control_mux_r2 : in std_logic_vector(1 downto 0);
+  control_mux_r2 : in std_logic;
   control_mux_r3 : in std_logic;
   control_mux_r4 : in std_logic;
   flag_sv1       : in std_logic;
@@ -49,7 +49,7 @@ COMPONENT control IS
   control_mux3  : out std_logic;
   control_mux4  : out std_logic_vector(2 downto 0);
   control_mux_r1 : out std_logic;
-  control_mux_r2 : out std_logic_vector(1 downto 0);
+  control_mux_r2 : out std_logic;
   control_mux_r3 : out std_logic;
   control_mux_r4 : out std_logic;
   flag_sv1       : out std_logic;
@@ -89,7 +89,7 @@ END component;
 
     signal control_mux2_aux : std_logic_vector(3 downto 0);
     signal control_mux4_aux : std_logic_vector(2 downto 0);
-    signal control_mux_r2_aux : std_logic_vector(1 downto 0);
+    signal control_mux_r2_aux : std_logic;
 
   
 BEGIN  

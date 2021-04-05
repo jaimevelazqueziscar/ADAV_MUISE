@@ -13,7 +13,7 @@ ENTITY datapath IS
      control_mux3  : in std_logic;
      control_mux4  : in std_logic_vector(2 downto 0);
      control_mux_r1 : in std_logic;
-     control_mux_r2 : in std_logic_vector(1 downto 0);
+     control_mux_r2 : in std_logic;
      control_mux_r3 : in std_logic;
      control_mux_r4 : in std_logic;
      flag_sv1       : in std_logic;
@@ -47,13 +47,6 @@ component mux2 port (
         a, b : in std_logic_vector(23 downto 0); 
         s : in std_logic;
         m2_out : out std_logic_vector(23 downto 0)
-    );
-end component;
-	
-component mux3 port (
-        a, b, c : in std_logic_vector(23 downto 0); 
-        s : in std_logic_vector(1 downto 0);
-        m3_out : out std_logic_vector(23 downto 0)
     );
 end component;
 	
@@ -166,12 +159,11 @@ MR1 : mux2 port map (
         m2_out => reg1
     );
     
-MR2 : mux3 port map (
-        a => s_r_2,
-        b => sum_out,
-        c => mult_out,
+MR2 : mux2 port map (
+        a => sum_out,
+        b => mult_out,
         s => control_mux_r2,
-        m3_out => reg2
+        m2_out => reg2
     );
 
 

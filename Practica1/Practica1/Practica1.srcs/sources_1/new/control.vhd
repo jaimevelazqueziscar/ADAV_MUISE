@@ -13,7 +13,7 @@ ENTITY control IS
      control_mux3  : out std_logic;
      control_mux4  : out std_logic_vector(2 downto 0);
      control_mux_r1 : out std_logic;
-     control_mux_r2 : out std_logic_vector(1 downto 0);
+     control_mux_r2 : out std_logic;
      control_mux_r3 : out std_logic;
      control_mux_r4 : out std_logic;
      flag_sv1       : out std_logic;
@@ -35,7 +35,7 @@ ARCHITECTURE behavioral OF control IS
 
     signal control_mux2_reg, control_mux2_next : std_logic_vector(3 downto 0);
     signal control_mux4_reg, control_mux4_next : std_logic_vector(2 downto 0);
-    signal control_mux_r2_reg, control_mux_r2_next : std_logic_vector(1 downto 0);
+    signal control_mux_r2_reg, control_mux_r2_next : std_logic;
 
 begin  
 
@@ -49,7 +49,7 @@ begin
         control_mux3_reg <= '0';
         control_mux4_reg <= "000";
         control_mux_r1_reg <= '0';
-        control_mux_r2_reg <= "00";
+        control_mux_r2_reg <= '0';
         control_mux_r3_reg <= '0';
         control_mux_r4_reg <= '0';
         flag_sv1_reg <= '0';
@@ -104,7 +104,7 @@ case state_reg is
         control_mux3_next <= '0';
         control_mux4_next <= "000";
         control_mux_r1_next <= '0';
-        control_mux_r2_next <= "00";
+        control_mux_r2_next <= '0';
         control_mux_r3_next <= '1';
         control_mux_r4_next <= '0';  
         flag_sv1_next <= '0';
@@ -119,7 +119,7 @@ case state_reg is
         control_mux3_next <= '0';
         control_mux4_next <= "000";
         control_mux_r1_next <= '1';
-        control_mux_r2_next <= "00";
+        control_mux_r2_next <= '0';
         control_mux_r3_next <= '1';
         control_mux_r4_next <= '1';  
         flag_sv1_next <= '0';
@@ -142,7 +142,7 @@ case state_reg is
         control_mux2_next <= "0010";     
         control_mux3_next <= '0';
         control_mux4_next <= "001";
-        control_mux_r2_next <= "01";
+        control_mux_r2_next <= '0';
         control_mux_r3_next <= '1';
         state_next <= t3;
         
@@ -189,7 +189,7 @@ case state_reg is
         control_mux1_next <= '1';
         control_mux2_next <= "1000";
         control_mux_r1_next <= '0';
-        control_mux_r2_next <= "10";
+        control_mux_r2_next <= '1';
         flag_sv3_next <= '1';
         state_next <= t9;
         
@@ -197,7 +197,7 @@ case state_reg is
         flag_sv3_next <= '0';
         control_mux3_next <= '0';
         control_mux4_next <= "101";
-        control_mux_r2_next <= "01";
+        control_mux_r2_next <= '0';
         state_next <= t10;
         
     when t10 =>
